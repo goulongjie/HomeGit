@@ -34,6 +34,16 @@ class Log(object):
         self.logger.addHandler(sh)
         self.logger.addHandler(fh)
 
+
+
+    def get_logger(self):
+        """
+        get logger
+        :return:
+        """
+        return self.logger
+
+
     def build_start_line(self, case_no):
         """
         write start line
