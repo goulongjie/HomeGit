@@ -31,9 +31,9 @@ class page_login(Page):
         self.ele_confirmLoss = self.poco("com.enigma.im:id/btn_right")
         self.ele_cancelLoss = self.poco("com.enigma.im:id/btn_left")
         #:::两步验证页面
-        self.ele_page_doubleverify = self.poco(text="两步验证", name="com.enigma.im:id/tv_toolbar_title")
+        self.ele_page_doubleverify = self.poco(name="com.enigma.im:id/tv_toolbar_title")
         self.ele_setDoublePwd = self.poco("com.enigma.im:id/input")
-        self.ele_next = self.poco(text="下一步")
+        self.ele_next = self.poco(name="com.enigma.im:id/action_bar_right_clickable_textview")
 
 
     def clear_input(self):
@@ -77,9 +77,15 @@ class page_login(Page):
             #设备丢失（强制登录）
             self.ele_deviceLoss.click()
             self.ele_confirmLoss.click()
+            #如果有二级密码：：默认密码123
             if self.ele_page_doubleverify.exists():
+                self.logInfo("有二级密码验证")
                 self.ele_setDoublePwd.set_text("123")
                 self.ele_next.click()
+                if self.poco("com.enigma.im:id/iv_icon").exists():
+                    self.logInfo("登录成功")
+                else:
+                    self.logInfo("遇到了未知问题：：登录失败")
         elif choose == "1":
             self.ele_cancelLoginThis.click()
 

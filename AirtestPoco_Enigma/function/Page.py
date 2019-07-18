@@ -1,6 +1,6 @@
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-
+from common.Log import Log
 
 
 class Page():
@@ -82,4 +82,9 @@ class Page():
         self.enigma_main.swipe(direction=[0, -1])
         print("下滑结束：：：：")
 
+    def logInfo(self,msg="null"):
+        self.logInfo = Log().info(msg)
+        return self.logInfo
 
+if __name__ == "__main__":
+    pass
